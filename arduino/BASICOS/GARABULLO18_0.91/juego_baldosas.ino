@@ -47,6 +47,19 @@ void nivel_baldosas()
   juego_baldosas(col);
 }
 
+#define CELDA_NULA 15
+byte relacion_celdas [][4] = { // para cada celda, contiene las celdas contiguas
+  /* 0 */ {1, 3, CELDA_NULA, CELDA_NULA},
+  /* 1 */ {0, 2, 4, CELDA_NULA},
+  /* 2 */ {1, 5, 15, CELDA_NULA},
+  /* 3 */ {0, 6, 4, CELDA_NULA},
+  /* 4 */ {1, 3, 5, 7},
+  /* 5 */ {2, 4, 8, CELDA_NULA},
+  /* 6 */ {7, 3, CELDA_NULA, CELDA_NULA},
+  /* 7 */ {6, 4, 8, CELDA_NULA},
+  /* 8 */ {7, 5, 15, CELDA_NULA}
+};
+
 void juego_baldosas(int colores)
 {
 
@@ -68,67 +81,15 @@ void juego_baldosas(int colores)
   baldosas_inicial(colores);
   while (test_tiempo_suficiente())
   {
-    switch (boton_pulsado())
-    {
-      case 0:
-        matriz[0] = (matriz[0] + 1) % colores;
-        matriz[1] = (matriz[1] + 1) % colores;
-        matriz[3] = (matriz[3] + 1) % colores;
-        break;
-
-      case 1:
-        matriz[0] = (matriz[0] + 1) % colores;
-        matriz[1] = (matriz[1] + 1) % colores;
-        matriz[2] = (matriz[2] + 1) % colores;
-        matriz[4] = (matriz[4] + 1) % colores;
-        break;
-
-      case 2:
-        matriz[1] = (matriz[1] + 1) % colores;
-        matriz[2] = (matriz[2] + 1) % colores;
-        matriz[5] = (matriz[5] + 1) % colores;
-        break;
-
-      case 3:
-        matriz[0] = (matriz[0] + 1) % colores;
-        matriz[6] = (matriz[6] + 1) % colores;
-        matriz[3] = (matriz[3] + 1) % colores;
-        matriz[4] = (matriz[4] + 1) % colores;
-        break;
-
-      case 4:
-        matriz[4] = (matriz[4] + 1) % colores;
-        matriz[1] = (matriz[1] + 1) % colores;
-        matriz[3] = (matriz[3] + 1) % colores;
-        matriz[5] = (matriz[5] + 1) % colores;
-        matriz[7] = (matriz[7] + 1) % colores;
-        break;
-
-      case 5:
-        matriz[5] = (matriz[5] + 1) % colores;
-        matriz[2] = (matriz[2] + 1) % colores;
-        matriz[4] = (matriz[4] + 1) % colores;
-        matriz[8] = (matriz[8] + 1) % colores;
-        break;
-
-      case 6:
-        matriz[6] = (matriz[6] + 1) % colores;
-        matriz[7] = (matriz[7] + 1) % colores;
-        matriz[3] = (matriz[3] + 1) % colores;
-        break;
-
-      case 7:
-        matriz[6] = (matriz[6] + 1) % colores;
-        matriz[7] = (matriz[7] + 1) % colores;
-        matriz[4] = (matriz[4] + 1) % colores;
-        matriz[8] = (matriz[8] + 1) % colores;
-        break;
-
-      case 8:
-        matriz[8] = (matriz[8] + 1) % colores;
-        matriz[7] = (matriz[7] + 1) % colores;
-        matriz[5] = (matriz[5] + 1) % colores;
-        break;
+    byte pulsado = boton_pulsado();
+    if ((pulsado >= 0) && (pulsado < 9)) {
+       matriz[pulsado] = (matriz[pulsado] + 1) % colores;
+       for (byte i = 0; i<4; i++) {
+         byte celda = relacion_celdas[pulsado][i];
+         if (celda != CELDA_NULA) {
+           matriz[celda] = (matriz[celda] + 1) % colores;
+         }
+       }
     }
     muestra_baldosas();
     if (test_terminado())
