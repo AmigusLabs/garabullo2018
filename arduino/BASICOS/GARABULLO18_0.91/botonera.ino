@@ -6,35 +6,12 @@ int boton_pulsado()
     int lectura_actual = analogRead(botonera1);
     pita();
     debounce();
-    if (abs(lectura_actual - lectura_boton_0) < umbral)
-    {
-      tiempo_ultimo_evento = millis();
-      return 0;
-      
-    }
-    else if (abs(lectura_actual - lectura_boton_1) < umbral)
-    {
-      tiempo_ultimo_evento = millis();
-      return 1;
-      
-    }
-    else if (abs(lectura_actual - lectura_boton_2) < umbral)
-    {
-      tiempo_ultimo_evento = millis();
-      return 2;
-      
-    }
-    else if (abs(lectura_actual - lectura_boton_3) < umbral)
-    {
-      tiempo_ultimo_evento = millis();
-      return 3;
-      
-    }
-    else if (abs(lectura_actual - lectura_boton_4) < umbral)
-    {
-      tiempo_ultimo_evento = millis();
-      return 4;
-      
+    for (byte i=0; i<5; i++) {
+      if (abs(lectura_actual - lectura_botones[i]) < umbral)
+      {
+        tiempo_ultimo_evento = millis();
+        return i;
+      }
     }
   }
   else if (analogRead (botonera2) > 50)
@@ -43,29 +20,12 @@ int boton_pulsado()
     int lectura_actual = analogRead(botonera2);
     pita();
     debounce();
-    if (abs(lectura_actual - lectura_boton_5) < umbral)
-    {
-      tiempo_ultimo_evento = millis();
-      return 5;
-      
-    }
-    else if (abs(lectura_actual - lectura_boton_6) < umbral)
-    {
-      tiempo_ultimo_evento = millis();
-      return 6;
-      
-    }
-    else if (abs(lectura_actual - lectura_boton_7) < umbral)
-    {
-      tiempo_ultimo_evento = millis();
-      return 7;
-      
-    }
-    else if (abs(lectura_actual - lectura_boton_8) < umbral)
-    {
-      tiempo_ultimo_evento = millis();
-      return 8;
-      
+    for (byte i=5; i<9; i++) {
+      if (abs(lectura_actual - lectura_botones[i]) < umbral)
+      {
+        tiempo_ultimo_evento = millis();
+        return i;
+      }
     }
   }
   else return 100;
