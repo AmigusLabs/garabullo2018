@@ -4,6 +4,7 @@
 #include "configuracion.h" // en la pestaña configuración.h está todo lo que se puede modificar
 #include "configuracion_avanzado.h" // en configuración_avanzado.h todas las configuraciones iniciales que no se deberían modificar
 void setup(void) {
+  Serial.begin(38400);
   limpia_eeprom(0); //función en la pestaña "juegos_comun" testea si es el primer uso del robot
   sonido_activado = EEPROM.read(0); // almacena el valor en una variable para no estar leyendo la EEPROM cada vez que se llame a funcion de sonido
   led.begin();  

@@ -19,6 +19,7 @@ void presentacion()
     delay(10);
   }
   apaga_leds(1);
+  /*
   for (byte color = 0; color < 7; color++)
   {
     for (byte i = 0; i < 65; i++)
@@ -26,7 +27,7 @@ void presentacion()
       pantalla.drawRect(64 - i, 64 - i, i * 2, i * 2, colores_propios[color]);
       delay(3);
     }
-  }
+  }*/
   pantalla.fillScreen(NEGRO);
   delay(1000);
   pantalla.setCursor(0, 0);
@@ -43,7 +44,7 @@ void presentacion()
 
 void cargando(int tiempo)
 {
-  pantalla.fillScreen(NEGRO);
+  pantalla.fillScreen(NEGRO);/*
   pantalla.setCursor(15, 40);
   pantalla.setTextSize(1);
   pantalla.setTextColor(CYAN);
@@ -56,5 +57,5 @@ void cargando(int tiempo)
     delay(tiempo);
     if (i < 34 || i == 42 || i == 86 || i > 100)
       delay(tiempo * 5);
-  }
+  }*/
 }

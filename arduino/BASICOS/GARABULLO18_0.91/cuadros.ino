@@ -87,10 +87,6 @@ void cuadros()
 void pantalla_inicio_cuadros()
 {
   pantalla.fillScreen(NEGRO);
-  pantalla.setTextSize(3);
-  pantalla.setCursor(0, 0);
-  pantalla.setTextColor(BLANCO, AZUL);
-  //pantalla.print("CUADROS");
   pantalla.setTextColor(VERDE);
   pantalla.setTextSize(5);
   pantalla.setCursor(50, 20); //arriba

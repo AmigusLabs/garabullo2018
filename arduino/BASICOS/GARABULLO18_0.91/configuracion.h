@@ -1,4 +1,4 @@
-String propietario = "Diego Lale";
+String propietario = "Amigus";
 
 
 //umbral lecturas 

@@ -1,4 +1,4 @@
-String menu_principal[] = {"ROBOT", "JUEGOS", "RECORDS", "AJUSTES"};
+String menu_principal[] = {"REMOTO", "ROBOT", "JUEGOS", "RECORDS", "AJUSTES"};
 
 void menu()
 {
@@ -10,19 +10,24 @@ void menu()
   pantalla.print("QUE VAMOS A HACER?");
   bateria();
   pantalla.setTextSize(2);
+  pantalla.setTextColor(NARANJA);
+  pantalla.setCursor(56, 45);
+  pantalla.print(menu_principal[0]);
+  pantalla.setTextSize(2);
   pantalla.setTextColor(AMARILLO);
   pantalla.setCursor(0, 60);
-  pantalla.print(menu_principal[0]);
+  pantalla.print(menu_principal[1]);
   pantalla.setTextColor(CYAN);
   pantalla.setCursor(56, 75);
-  pantalla.print(menu_principal[1]);
+  pantalla.print(menu_principal[2]);
   pantalla.setTextColor(VERDE);
   pantalla.setCursor(0, 90);
-  pantalla.print(menu_principal[2]);
+  pantalla.print(menu_principal[3]);
   pantalla.setTextColor(ROJO);
   pantalla.setCursor(44, 105);
-  pantalla.print(menu_principal[3]);
+  pantalla.print(menu_principal[4]);
   apaga_leds(0);
+  led.setPixelColor(2, led.Color(brillo, brillo * 0.7, brillo * 0.3));
   led.setPixelColor(3, led.Color(brillo / 2, brillo, 0));
   led.setPixelColor(5, led.Color(0, brillo, brillo));
   led.setPixelColor(6, led.Color(0, brillo, 0));
@@ -36,6 +41,10 @@ void menu()
     byte boton = boton_pulsado();
     switch (boton)
     {
+      case 2:
+        salida = 1;
+        remoto();
+        break;
       case 3:
         salida = 1;
         cuadros();
