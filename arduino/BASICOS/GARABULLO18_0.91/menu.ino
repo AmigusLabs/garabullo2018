@@ -120,6 +120,7 @@ void ajustes()
           break;
         case 3:
           sonido_activado = !sonido_activado;
+          EEPROM.write(0, sonido_activado);
           pantalla.setCursor(0, 50);
           pantalla.setTextColor(AZUL);
           pantalla.fillRect(0, 49, 70, 15, NEGRO);
